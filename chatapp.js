@@ -14,12 +14,23 @@ if (Meteor.isClient) {
 	    
 	return users;
     }
-  
+
+    Template.messages.rendered = function(){
+	$("#messages").height($(window).height() - 160); //160 is the MAGIC
+	$("#messages").scrollTop( $(document).height() + 999999);
+
+	$(document).ready( function(){
+	    $(window).resize( function(){
+		$("#messages").height( $(window).height() - 160);	
+	    });
+	});
+    }
+
+
     Template.messages.messages = function(){
 	messages = Messages.find({}).fetch();
 	return messages;
     }
-
     
     Template.newMessage.rendered = function(){
 	$("#newMessage").focus();
@@ -36,6 +47,8 @@ if (Meteor.isClient) {
 		});
 
 		$("#newMessage").val("").focus();
+
+		$("#messages").scrollTop( $(document).height() + 999999);
 		
 	    }
 	}
@@ -45,6 +58,6 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
     Meteor.startup(function () {
-    });
 
+    });
 }

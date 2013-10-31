@@ -1,8 +1,4 @@
 /* CSS declarations go here */
-body {
-    padding: 10px 15px 10px 15px;
-    height: 100%;
-}
 
 #usersList{
     float: left;
@@ -16,11 +12,14 @@ body {
 
 #messages{
     margin-left: 250px;
-    height: 100%;
+    height: 500px;
+    overflow-y: auto;
+    word-wrap: break-word;
 }
 
 #newMessage{
-    width: 90%;
+    width: 75%;
+    margin-left: 250px;
 }
 
 #footer{

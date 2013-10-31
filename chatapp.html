@@ -3,8 +3,13 @@
 </head>
 
 <body>
-  {{> header }}
-  {{> main}}
+  <div id="wrap">
+    <div class="container">
+      {{> header }}
+      {{> main}}
+    </div>
+    <div class="push"></div>
+  </div>
   {{> footer }}
 </body>
 
@@ -22,6 +27,7 @@
   {{> roomSelect}}
   {{> users }}
   {{> messages }}
+  {{> newMessage }}
   {{/if}}
 </template>
 
@@ -44,14 +50,11 @@
       <p><b>{{ username }}</b>: {{message}}</p>
       {{/each}}
 
-      {{> newMessage }}
-
     </div>
   </div>
 </template>
 
 <template name="newMessage">
-  <div id="footer">
-    <input type="text" name="newMessage" id="newMessage" spellcheck="false"/>
-  </div>
+
+  <input type="text" name="newMessage" id="newMessage" spellcheck="false"/>
 </template>
