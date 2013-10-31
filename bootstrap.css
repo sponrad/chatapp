@@ -3,6 +3,7 @@
 html,
 body {
     height: 100%;
+    padding: 0 10px;
 /* The html and body elements cannot have any padding or margin. */
 }
 
@@ -21,7 +22,7 @@ body {
     height: 60px;
 }
 #footer {
-    background-color: #f5f5f5;
+    background-color: white;
 }
 
 /* Lastly, apply responsive CSS fixes as necessary */
