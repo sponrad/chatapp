@@ -1,0 +1,57 @@
+<head>
+  <title>chatapp</title>
+</head>
+
+<body>
+  {{> header }}
+  {{> main}}
+  {{> footer }}
+</body>
+
+<template name="header">
+  <div style="float: right;">{{ loginButtons align="right"}}</div>
+  <h1>chatapp</h1>
+</template>
+
+<template name="footer">
+  <div>Go chatapp!! =-D</div>
+</template>
+
+<template name="main">
+  {{#if currentUser}}
+  {{> roomSelect}}
+  {{> users }}
+  {{> messages }}
+  {{/if}}
+</template>
+
+<template name="roomSelect">
+</template>
+
+<template name="users">
+  <div id="usersList">
+    Logged in:
+    {{#each users}}
+    <p>{{ username }}</p>
+    {{/each}}
+  </div>
+</template>
+
+<template name="messages">
+  <div id="messagesWrapper">
+    <div id="messages">
+      {{#each messages}}
+      <p><b>{{ username }}</b>: {{message}}</p>
+      {{/each}}
+
+      {{> newMessage }}
+
+    </div>
+  </div>
+</template>
+
+<template name="newMessage">
+  <div id="footer">
+    <input type="text" name="newMessage" id="newMessage" spellcheck="false"/>
+  </div>
+</template>

@@ -1,0 +1,28 @@
+/* CSS declarations go here */
+body {
+    padding: 10px 15px 10px 15px;
+    height: 100%;
+}
+
+#usersList{
+    float: left;
+    width: 250px;
+    display: inline-block;
+}
+
+#usersList p{
+    padding-left: 10px;
+}
+
+#messages{
+    margin-left: 250px;
+    height: 100%;
+}
+
+#newMessage{
+    width: 90%;
+}
+
+#footer{
+    clear: both;
+}
