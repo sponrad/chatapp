@@ -17,7 +17,7 @@ if (Meteor.isClient) {
 
     Template.messages.rendered = function(){
 	$("#messages").height($(window).height() - 160); //160 is the MAGIC
-	$("#messages").scrollTop( $(document).height() + 999999);
+	$("#messages").scrollTop( $(document).height() + Infinity);
 
 	$(document).ready( function(){
 	    $(window).resize( function(){
