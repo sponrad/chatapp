@@ -1,4 +1,8 @@
 Messages = new Meteor.Collection("messages");
+Rooms = new Meteor.Collection("rooms");
+Notes = new Meteor.Collection("notes");
+Subdomain = new Meteor.Collection("subdomain"); //or call this account?
+
 //LoggedIn = new Meteor.Collection("loggedIn");
 
 if (Meteor.isClient) {
@@ -14,6 +18,30 @@ if (Meteor.isClient) {
 	    
 	return users;
     }
+
+    Template.roomSelect.rooms = function(){
+	rooms = Rooms.find({}).fetch();
+	return rooms;
+    }
+
+    Template.roomSelect.events({
+	'click #newRoom' : function(e) {
+	    //turn this into a text box
+	},
+	'keypress #newRoom' : function(e) {
+	    if (e.which == "13"){    //create a new room
+		Rooms.insert({
+		    user: Meteor.userId(),
+		    username: Meteor.user().username,
+		    name: $("#newRoom").val(),
+		    createdAt: new Date(),
+		});
+
+		$("#newRoom").val("").focus();
+		
+	    }
+	}	
+    });
 
     Template.messages.rendered = function(){
 	$("#messages").height($(window).height() - 160); //160 is the MAGIC

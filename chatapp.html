@@ -32,6 +32,10 @@
 </template>
 
 <template name="roomSelect">
+  {{#each rooms}}
+  <p>{{ name }}</b></p>
+  {{/each}}
+  <input type="text" id="newRoom" placeholder="New Room" />
 </template>
 
 <template name="users">
