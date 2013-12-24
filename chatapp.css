@@ -25,6 +25,10 @@
     word-wrap: break-word;
 }
 
+b.currentUser {
+    color: blue;
+}
+
 #newMessage{
     width: 75%;
     margin-left: 250px;

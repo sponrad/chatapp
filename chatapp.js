@@ -24,7 +24,7 @@ Session.setDefault("room_id", Rooms.findOne({})._id);
     Template.users.avatar = function(){	
 	//var hash = CryptoJS.MD5(this.emails[0].address);
 	var hash = CryptoJS.MD5(this.username);
-	return img_add = "http://www.gravatar.com/avatar/" + hash + "?f=y&d=identicon";
+	return img_add = "http://www.gravatar.com/avatar/" + hash + "?s=40&d=identicon";
     }
 
     Template.roomSelect.rooms = function(){
@@ -71,10 +71,13 @@ Session.setDefault("room_id", Rooms.findOne({})._id);
 	});
     }
 
-
     Template.messages.messages = function(){
 	messages = Messages.find({room_id: Session.get("room_id")}).fetch();
 	return messages;
+    }
+
+    Template.messages.currentUser = function(){
+	return (Meteor.user()._id == this.user) ? "currentUser" : "";
     }
     
     Template.newMessage.rendered = function(){

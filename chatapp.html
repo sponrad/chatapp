@@ -56,7 +56,7 @@
   <div id="messagesWrapper">
     <div id="messages">
       {{#each messages}}
-      <p><b>{{ username }}</b>: {{message}}</p>
+      <p><b class="{{ currentUser }}">{{ username }}</b>: {{message}}</p>
       {{/each}}
 
     </div>
