@@ -25,13 +25,13 @@ function parseURL($string){
 
 if (Meteor.isClient) {
 
-    if ( Rooms.find({}).count() > 0 ){
-	Session.setDefault("room_id", Rooms.findOne({})._id);
-    }
-
     Accounts.ui.config({
 	passwordSignupFields: 'USERNAME_AND_EMAIL'
     });
+
+    Template.main.roomSelected = function(){
+	return Session.equals("room_id", undefined) ? false : true;
+    }
 
     Template.users.users = function() {
 	users = Meteor.users.find({
@@ -77,6 +77,7 @@ if (Meteor.isClient) {
 	    Session.set("room_id", this._id);
 	    Deps.flush();
 	    $("#newMessage").focus();
+	    $("#messages").scrollTop( $(document).height() + 99999999999999999 );
 	}
     });
 
@@ -119,9 +120,8 @@ if (Meteor.isClient) {
 		    room_id: Session.get("room_id"),
 		});
 
+		$("#messages").scrollTop( $(document).height() + 99999999999999999 );
 		$("#newMessage").val("").focus();
-
-		$("#messages").scrollTop( $(document).height() + 999999999);
 		
 	    }
 	}

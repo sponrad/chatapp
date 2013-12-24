@@ -28,8 +28,12 @@
     {{> roomSelect}}
     {{> users }}
   </div>
+  {{#if roomSelected}}
   {{> messages }}
   {{> newMessage }}
+  {{else}}
+  <p>Choose a room to chat in</p>
+  {{/if}}
   {{/if}}
 </template>
 
