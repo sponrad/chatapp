@@ -3,6 +3,24 @@ Rooms = new Meteor.Collection("rooms");
 Notes = new Meteor.Collection("notes");
 Subdomain = new Meteor.Collection("subdomain"); //or call this account?
 
+var __urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+var __imgRegex = /\.(?:jpe?g|gif|png)$/i;
+
+function parseURL($string){
+
+    var exp = __urlRegex;
+    return $string.replace(exp,function(match){
+        __imgRegex.lastIndex=0;
+        if(__imgRegex.test(match)){
+            return '<a href="'+match+'" target="_blank"><img src="'+match+'" class="thumbnail" /></a>';
+        }
+        else{
+            return '<a href="'+match+'" target="_blank">'+match+'</a>';
+        }
+    }
+			  );
+}
+
 //LoggedIn = new Meteor.Collection("loggedIn");
 
 if (Meteor.isClient) {
@@ -62,7 +80,7 @@ Session.setDefault("room_id", Rooms.findOne({})._id);
 
     Template.messages.rendered = function(){
 	$("#messages").height($(window).height() - 160); //160 is the MAGIC
-	$("#messages").scrollTop( $(document).height() + Infinity);
+	$("#messages").scrollTop( $(document).height() + 99999999999999999 );
 
 	$(document).ready( function(){
 	    $(window).resize( function(){
@@ -74,6 +92,10 @@ Session.setDefault("room_id", Rooms.findOne({})._id);
     Template.messages.messages = function(){
 	messages = Messages.find({room_id: Session.get("room_id")}).fetch();
 	return messages;
+    }
+
+    Template.messages.processedMessage = function(){
+	return parseURL(this.message);
     }
 
     Template.messages.currentUser = function(){
@@ -97,7 +119,7 @@ Session.setDefault("room_id", Rooms.findOne({})._id);
 
 		$("#newMessage").val("").focus();
 
-		$("#messages").scrollTop( $(document).height() + 999999);
+		$("#messages").scrollTop( $(document).height() + 999999999);
 		
 	    }
 	}

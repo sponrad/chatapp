@@ -34,6 +34,10 @@ b.currentUser {
     margin-left: 250px;
 }
 
+.thumbnail{
+    max-width: 90%;
+}
+
 #footer{
     clear: both;
 }
