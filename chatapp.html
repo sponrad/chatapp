@@ -1,5 +1,5 @@
 <head>
-  <title>chatapp</title>
+  <title>officechat</title>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
 
 <template name="header">
   <div style="float: right;">{{ loginButtons align="right"}}</div>
-  <h1>chatapp</h1>
+  <h1><span style="font-weight: normal">office</span>chat</h1>
 </template>
 
 <template name="footer">
@@ -44,11 +44,9 @@
 
 <template name="users">
   <div id="usersList">
-    Logged in:
     {{#each users}}
     <p>
-      {{ email_address }}, 
-      {{ username }}
+      <img src={{ avatar }} /> {{ username }}
     </p>
     {{/each}}
   </div>

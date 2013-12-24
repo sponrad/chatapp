@@ -7,6 +7,8 @@ Subdomain = new Meteor.Collection("subdomain"); //or call this account?
 
 if (Meteor.isClient) {
 
+Session.setDefault("room_id", Rooms.findOne({})._id);
+
     Accounts.ui.config({
 	passwordSignupFields: 'USERNAME_AND_EMAIL'
     });
@@ -17,6 +19,12 @@ if (Meteor.isClient) {
 	}).fetch();
 	    
 	return users;
+    }
+
+    Template.users.avatar = function(){	
+	//var hash = CryptoJS.MD5(this.emails[0].address);
+	var hash = CryptoJS.MD5(this.username);
+	return img_add = "http://www.gravatar.com/avatar/" + hash + "?f=y&d=identicon";
     }
 
     Template.roomSelect.rooms = function(){
