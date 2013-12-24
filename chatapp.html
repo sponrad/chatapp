@@ -24,25 +24,32 @@
 
 <template name="main">
   {{#if currentUser}}
-  {{> roomSelect}}
-  {{> users }}
+  <div id="leftColumn">
+    {{> roomSelect}}
+    {{> users }}
+  </div>
   {{> messages }}
   {{> newMessage }}
   {{/if}}
 </template>
 
 <template name="roomSelect">
-  {{#each rooms}}
-  <p>{{ name }}</b></p>
-  {{/each}}
-  <input type="text" id="newRoom" placeholder="New Room" />
+  <div id="roomSelect">
+    {{#each rooms}}
+    <p class="room {{ selected }}"><b>{{ name }}</b></p>
+{{/each}}
+<p><input type="text" id="newRoom" placeholder="New Room" /></p>
+</div>
 </template>
 
 <template name="users">
   <div id="usersList">
     Logged in:
     {{#each users}}
-    <p>{{ username }}</p>
+    <p>
+      {{ email_address }}, 
+      {{ username }}
+    </p>
     {{/each}}
   </div>
 </template>

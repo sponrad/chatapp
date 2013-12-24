@@ -1,13 +1,21 @@
 /* CSS declarations go here */
 
-#usersList{
+#leftColumn{
     float: left;
     width: 250px;
     display: inline-block;
 }
 
-#usersList p{
-    padding-left: 10px;
+.room {
+    cursor: default;
+    padding: 8px 0px 8px 5px;
+    margin: 2px 20px 2px 0px;
+    border-radius: 5px;
+}
+
+.room.selected {
+    background: #aaaaff;
+    transition: all .2s ease-in-out;
 }
 
 #messages{

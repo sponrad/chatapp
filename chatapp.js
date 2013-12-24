@@ -24,6 +24,10 @@ if (Meteor.isClient) {
 	return rooms;
     }
 
+    Template.roomSelect.selected = function(){
+	return Session.equals("room_id", this._id) ? 'selected' : '';
+    }
+
     Template.roomSelect.events({
 	'click #newRoom' : function(e) {
 	    //turn this into a text box
@@ -40,7 +44,12 @@ if (Meteor.isClient) {
 		$("#newRoom").val("").focus();
 		
 	    }
-	}	
+	},
+	'click .room' : function(e) {
+	    Session.set("room_id", this._id);
+	    Deps.flush();
+	    $("#newMessage").focus();
+	}
     });
 
     Template.messages.rendered = function(){
@@ -56,7 +65,7 @@ if (Meteor.isClient) {
 
 
     Template.messages.messages = function(){
-	messages = Messages.find({}).fetch();
+	messages = Messages.find({room_id: Session.get("room_id")}).fetch();
 	return messages;
     }
     
@@ -72,6 +81,7 @@ if (Meteor.isClient) {
 		    username: Meteor.user().username,
 		    message: $("#newMessage").val(),
 		    createdAt: new Date(),
+		    room_id: Session.get("room_id"),
 		});
 
 		$("#newMessage").val("").focus();
