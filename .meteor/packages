@@ -12,5 +12,5 @@ accounts-base
 accounts-ui
 accounts-password
 jquery
-user-status
 coffeescript
+users-status
