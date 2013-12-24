@@ -25,7 +25,9 @@ function parseURL($string){
 
 if (Meteor.isClient) {
 
-Session.setDefault("room_id", Rooms.findOne({})._id);
+    if ( Rooms.find({}).count() > 0 ){
+	Session.setDefault("room_id", Rooms.findOne({})._id);
+    }
 
     Accounts.ui.config({
 	passwordSignupFields: 'USERNAME_AND_EMAIL'
